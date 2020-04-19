@@ -321,3 +321,6 @@ slave的jps进程应为:
 [root@hbase1 hbase-2.1.10]# cp lib/client-facing-thirdparty/htrace-core-3.1.0-incubating.jar lib/
 ```
 
+之后可以再http://192.168.1.102:16010查看管理页面
+
+![hbase-manager](E:\mine\bigdata\record\hbase-manager.png)
