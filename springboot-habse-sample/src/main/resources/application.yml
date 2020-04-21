@@ -17,13 +17,19 @@ spring:
     testOnBorrow: false       #申请连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能
     testOnReturn: false       #归还连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能
     poolPreparedStatements: false #是否缓存preparedStatement，也就是PSCache。PSCache对支持游标的数据库性能提升巨大，比如说oracle。在mysql下建议关闭
+  data:
+    hbase:
+      quorum: hbase1:2181,hbase2:2181,hbase3:2181
+      rootDir: hdfs://hbase1:9000/hbase
+      nodeParent: /hbase
+#hbase:
+#  zookeeper:
+#    quorum: hbase1,hbase2,hbase3
+#    property:
+#      clientPort: 2181
+#
+#zookeeper:
+#  znode:
+#    parent: /hbase
 
-hbase:
-  zookeeper:
-    quorum: hbase1,hbase2,hbase3
-    property:
-      clientPort: 2181
 
-zookeeper:
-  znode:
-    parent: /hbase

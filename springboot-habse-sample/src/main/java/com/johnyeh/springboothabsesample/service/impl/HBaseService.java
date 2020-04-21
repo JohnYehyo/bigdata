@@ -1,13 +1,14 @@
 package com.johnyeh.springboothabsesample.service.impl;
 
+//import com.github.xiangwangjianghu.template.HBaseTemplate;
 import com.johnyeh.springboothabsesample.service.IHBaseService;
+import com.spring4all.spring.boot.starter.hbase.api.HbaseTemplate;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang.StringUtils;
-import org.apache.hadoop.hbase.client.Scan;
-import org.apache.hadoop.hbase.filter.*;
-import org.apache.hadoop.hbase.util.Bytes;
+//import org.apache.commons.lang.StringUtils;
+//import org.apache.hadoop.hbase.client.Scan;
+//import org.apache.hadoop.hbase.filter.*;
+//import org.apache.hadoop.hbase.util.Bytes;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.hadoop.hbase.HbaseTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
