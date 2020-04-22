@@ -68,6 +68,12 @@
             <groupId>com.spring4all</groupId>
             <artifactId>spring-boot-starter-hbase</artifactId>
             <version>1.0.0.RELEASE</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>hbase-client</artifactId>
+                    <groupId>org.apache.hbase</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
@@ -78,20 +84,11 @@
         </dependency>
 
 
-        <!--        <dependency>-->
-        <!--            <groupId>org.apache.hbase</groupId>-->
-        <!--            <artifactId>hbase-client</artifactId>-->
-        <!--            <version>1.2.6</version>-->
-        <!--        </dependency>-->
-
-
-
-
-
-
-
-
-
+        <dependency>
+            <groupId>org.apache.hbase</groupId>
+            <artifactId>hbase-client</artifactId>
+            <version>1.2.6</version>
+        </dependency>
 
 
         <!--        <dependency>-->

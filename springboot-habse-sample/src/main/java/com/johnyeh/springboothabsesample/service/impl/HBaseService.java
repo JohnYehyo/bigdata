@@ -1,13 +1,12 @@
 package com.johnyeh.springboothabsesample.service.impl;
 
-//import com.github.xiangwangjianghu.template.HBaseTemplate;
+import com.johnyeh.springboothabsesample.entity.LocaitonInfo;
 import com.johnyeh.springboothabsesample.service.IHBaseService;
 import com.spring4all.spring.boot.starter.hbase.api.HbaseTemplate;
+import com.spring4all.spring.boot.starter.hbase.api.RowMapper;
 import lombok.extern.slf4j.Slf4j;
-//import org.apache.commons.lang.StringUtils;
-//import org.apache.hadoop.hbase.client.Scan;
-//import org.apache.hadoop.hbase.filter.*;
-//import org.apache.hadoop.hbase.util.Bytes;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.hadoop.hbase.client.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,23 +27,24 @@ public class HBaseService implements IHBaseService {
 
     @Override
     public List getRowKeyAndColumn(String tableName, String startRowkey, String stopRowkey, String column, String qualifier) {
-        FilterList filterList = new FilterList(FilterList.Operator.MUST_PASS_ALL);
-        if (StringUtils.isNotBlank(column)) {
-            log.debug("{}", column);
-            filterList.addFilter(new FamilyFilter(CompareFilter.CompareOp.EQUAL, new BinaryComparator(Bytes.toBytes(column))));
-        }
-        if (StringUtils.isNotBlank(qualifier)) {
-            log.debug("{}", qualifier);
-            filterList.addFilter(new QualifierFilter(CompareFilter.CompareOp.EQUAL, new BinaryComparator(Bytes.toBytes(qualifier))));
-        }
-        Scan scan = new Scan();
-        if (filterList.getFilters().size() > 0) {
-            scan.setFilter(filterList);
-        }
-        scan.setStartRow(Bytes.toBytes(startRowkey));
-        scan.setStopRow(Bytes.toBytes(stopRowkey));
-
-        return hbaseTemplate.find(tableName, scan, (rowMapper, rowNum) -> rowMapper);
+//        FilterList filterList = new FilterList(FilterList.Operator.MUST_PASS_ALL);
+//        if (StringUtils.isNotBlank(column)) {
+//            log.debug("{}", column);
+//            filterList.addFilter(new FamilyFilter(CompareFilter.CompareOp.EQUAL, new BinaryComparator(Bytes.toBytes(column))));
+//        }
+//        if (StringUtils.isNotBlank(qualifier)) {
+//            log.debug("{}", qualifier);
+//            filterList.addFilter(new QualifierFilter(CompareFilter.CompareOp.EQUAL, new BinaryComparator(Bytes.toBytes(qualifier))));
+//        }
+//        Scan scan = new Scan();
+//        if (filterList.getFilters().size() > 0) {
+//            scan.setFilter(filterList);
+//        }
+//        scan.setStartRow(Bytes.toBytes(startRowkey));
+//        scan.setStopRow(Bytes.toBytes(stopRowkey));
+//
+//        return hbaseTemplate.find(tableName, scan, (rowMapper, rowNum) -> rowMapper);
+        return null;
     }
 
     @Override
@@ -57,7 +57,12 @@ public class HBaseService implements IHBaseService {
                     return hbaseTemplate.get(tableName, rk, familyColumn, (rowMapper, rowNum) -> rowMapper);
                 }
             }
-            return hbaseTemplate.get(tableName, rk, (rowMapper, rowNum) -> rowMapper);
+            return hbaseTemplate.get(tableName, rk, (result, i) -> {
+                LocaitonInfo locaitonInfo = new LocaitonInfo();
+                locaitonInfo.setUsername(new String(result.getValue("locInfo".getBytes(), "username".getBytes())));
+                locaitonInfo.setGender(new String(result.getValue("locInfo".getBytes(), "gender".getBytes())));
+                return locaitonInfo;
+            });
         }).collect(Collectors.toList());
     }
 }
