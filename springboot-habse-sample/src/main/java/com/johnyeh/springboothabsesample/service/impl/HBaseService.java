@@ -10,6 +10,9 @@ import org.apache.hadoop.hbase.client.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -59,10 +62,16 @@ public class HBaseService implements IHBaseService {
             }
             return hbaseTemplate.get(tableName, rk, (result, i) -> {
                 LocaitonInfo locaitonInfo = new LocaitonInfo();
-                locaitonInfo.setUsername(new String(result.getValue("locInfo".getBytes(), "username".getBytes())));
-                locaitonInfo.setGender(new String(result.getValue("locInfo".getBytes(), "gender".getBytes())));
+                locaitonInfo.setName(new String(result.getValue("locMsg".getBytes(), "name".getBytes())));
+                locaitonInfo.setPos(new String(result.getValue("locMsg".getBytes(), "pos".getBytes())));
+                locaitonInfo.setTime(getFormatTime(new String(result.getValue("locMsg".getBytes(), "time".getBytes()))));
                 return locaitonInfo;
             });
         }).collect(Collectors.toList());
+    }
+
+    private Date getFormatTime(String timestamp){
+        Long time = Long.valueOf(timestamp);
+        return new Date(time);
     }
 }

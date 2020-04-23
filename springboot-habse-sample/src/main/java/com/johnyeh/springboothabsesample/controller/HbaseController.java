@@ -31,12 +31,12 @@ public class HbaseController {
 
     @GetMapping(value = "list")
     public List list(){
-        String tableName = "test";
+        String tableName = "location";
         List<String> rowKeys = new ArrayList<>();
-        rowKeys.add("row1");
-        rowKeys.add("row2");
+        rowKeys.add("000000000001");
+        rowKeys.add("000000000002");
         String familyColumn = null;
-        String column = "userinfo";
+        String column = "locMsg";
         List list = hbaseService.getListRowkeyData(tableName, rowKeys, familyColumn, column);
         return list;
     }

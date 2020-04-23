@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 /**
  * @author JohnYehyo
  * @date 2020-4-22
@@ -13,6 +15,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class LocaitonInfo {
 
-    private String username;
-    private String gender;
+    private String name;
+    private String pos;
+    private Date time;
 }
