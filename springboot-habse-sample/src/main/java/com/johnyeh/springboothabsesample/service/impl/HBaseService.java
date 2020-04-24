@@ -60,6 +60,8 @@ public class HBaseService implements IHBaseService {
                     return hbaseTemplate.get(tableName, rk, familyColumn, (rowMapper, rowNum) -> rowMapper);
                 }
             }
+
+
             return hbaseTemplate.get(tableName, rk, (result, i) -> {
                 LocaitonInfo locaitonInfo = new LocaitonInfo();
                 locaitonInfo.setName(new String(result.getValue("locMsg".getBytes(), "name".getBytes())));
@@ -67,6 +69,8 @@ public class HBaseService implements IHBaseService {
                 locaitonInfo.setTime(getFormatTime(new String(result.getValue("locMsg".getBytes(), "time".getBytes()))));
                 return locaitonInfo;
             });
+
+
         }).collect(Collectors.toList());
     }
 
