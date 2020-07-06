@@ -226,11 +226,11 @@ server.3=hbase3:2888:3888
 
 启动后master的jps进程为:
 
-![zookeeper-master](E:\mine\bigdata\record\zookeeper-master.png)
+![zookeeper-master](zookeeper-master.png)
 
 slave的jps进程为:
 
-![zookeeper-slave](E:\mine\bigdata\record\zookeeper-slave.png)
+![zookeeper-slave](zookeeper-slave.png)
 
 
 
@@ -303,15 +303,15 @@ slave的jps进程为:
 
 此时master的jps进程应为:
 
-![hbase-master](E:\mine\bigdata\record\hbase-master.png)
+![hbase-master](hbase-master.png)
 
 slave的jps进程应为:
 
-![hbase-slave](E:\mine\bigdata\record\hbase-slave.png)
+![hbase-slave](hbase-slave.png)
 
 这里可能会看不到master中的HMaste,查看日志应该会看到报错:
 
-![unhaveHmaster](E:\mine\bigdata\record\unhaveHmaster.png)
+![unhaveHmaster](unhaveHmaster.png)
 
 这是由于不同版本lib的关系
 
@@ -323,4 +323,4 @@ slave的jps进程应为:
 
 之后可以再http://192.168.1.102:16010查看管理页面
 
-![hbase-manager](E:\mine\bigdata\record\hbase-manager.png)
+![hbase-manager](hbase-manager.png)
