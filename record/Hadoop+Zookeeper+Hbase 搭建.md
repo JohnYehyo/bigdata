@@ -315,7 +315,7 @@ slave的jps进程应为:
 
 这是由于不同版本lib的关系
 
-拷贝响应lib到lib文件夹下即可
+拷贝相应lib到lib文件夹下即可
 
 ```linux
 [root@hbase1 hbase-2.1.10]# cp lib/client-facing-thirdparty/htrace-core-3.1.0-incubating.jar lib/
